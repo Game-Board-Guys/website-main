@@ -164,8 +164,8 @@ passport.deserializeUser((id, done) => {
 // -------AUTH0 END POINTS-------
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3001/landing',
-    failureRedirect: 'http://localhost:3001/'
+    successRedirect: '/landing',
+    failureRedirect: '/'
 }));
 app.get('/auth/me', (req,res) => {
     if (!req.user) {
@@ -177,7 +177,7 @@ app.get('/auth/me', (req,res) => {
 
 app.get('/auth/logout', function(req,res) {
     req.logOut();
-    res.redirect('http://localhost:3001/')
+    res.redirect('/')
 })
 
 // -------  AVATAR CHANGE ENDPOINTS -------
