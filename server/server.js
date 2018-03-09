@@ -208,7 +208,7 @@ app.get('/api/getInvadeOrder', controller.getInvadeOrder);
 // --- orb
 app.get('/api/getOrbOrder', controller.getOrbOrder);
 
-// const path = require('path')
-// app.get('*', (req, res)=>{
-//   res.sendFile(path.join(__dirname, '../build/index.html'));
-// })
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
