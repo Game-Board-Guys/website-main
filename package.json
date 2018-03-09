@@ -34,5 +34,5 @@
   "repository": "https://github.com/Game-Board-Guys/GameBoard.git",
   "author": "devin <deivnobowen@gmail.com>",
   "license": "MIT",
-  "proxy": "165.227.27.112:80"
+  "proxy": "80"
 }
