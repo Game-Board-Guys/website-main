@@ -211,5 +211,5 @@ app.get('/api/getOrbOrder', controller.getOrbOrder);
 const path = require('path')
 app.get('*', (req, res)=>{
     console.log('None Met')
-  res.sendFile(path.join(__dirname, '../build/'));
+  res.sendFile(path.join(__dirname, '../build/index.html'));
 })
