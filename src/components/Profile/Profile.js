@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './Profile.css';
 import axios from 'axios';
-
 class Profile extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             username: '...',
             img: 'https://png.icons8.com/metro/1600/decision.png',
@@ -40,101 +38,101 @@ class Profile extends Component {
                 invadeHigh: res.data.invade_high_score,
                 orbHigh: res.data.maze_time_highscore
             }) 
-        }),
-        axios.get('/api/getPongOrder').then((res) => {
-            // console.log(res.data)
-            this.setState({
-                pongLeaders: res.data
-            })
-            this.setState ({
-                pong: 0
-            })
-            var pong = 0
-            for(var i=0;i<=this.state.pongLeaders.length;i++){
-                if(this.state.pongLeaders[i].auth_id===this.state.user){
-                    ++pong;
-                     break;
-                }else{
-                    ++pong;
+        }).then((res) => {
+            axios.get('/api/getPongOrder').then((res) => {
+                console.log(res.data)
+                // this.setState({
+                //     pongLeaders: res.data
+                // })
+                // this.setState ({
+                //     pong: 0
+                // })
+                var pongLeaders = res.data
+                var pong = 0
+                for(var i=0;i<=pongLeaders.length;i++){
+                    console.log(pongLeaders)
+                    if(pongLeaders[i].auth_id===this.state.user){
+                        ++pong;
+                         break;
+                    }else{
+                        ++pong;
+                    }
                 }
-            }
-            return this.setState({
-                pong
-            })
-        }),
-        axios.get('/api/getBreakOrder').then((res) => {
-            // console.log(res.data)
-            this.setState({
-                breakLeaders: res.data
-            })
-            this.setState ({
-                brick: 0
-            })
-            var brick = 0;
-            for(var i=0;i<=this.state.breakLeaders.length;i++){
-                if(this.state.breakLeaders[i].auth_id===this.state.user){
-                    ++brick;
-                     break;
-                }else{
-                    ++brick;
+                return this.setState({
+                    pong
+                })
+            }),
+            axios.get('/api/getBreakOrder').then((res) => {
+                // console.log(res.data)
+                // this.setState({
+                //     breakLeaders: res.data
+                // })
+                // this.setState ({
+                //     brick: 0
+                // })
+                var breakLeaders = res.data;
+                var brick = 0;
+                for(var i=0;i<=breakLeaders.length;i++){
+                    if(breakLeaders[i].auth_id===this.state.user){
+                        ++brick;
+                         break;
+                    }else{
+                        ++brick;
+                    }
                 }
-            }
-            return this.setState({
-                brick
-            })
-        }),
-        axios.get('/api/getInvadeOrder').then((res) => {
-            // console.log(res.data)
-            this.setState({
-                invadeLeaders: res.data
-            })
-            this.setState ({
-                invade: 0
-            })
-            var invade = 0;
-            for(var i=0;i<=this.state.invadeLeaders.length;i++){
-                if(this.state.invadeLeaders[i].auth_id===this.state.user){
-                    ++invade;
-                     break;
-                }else{
-                    ++invade;
+                return this.setState({
+                    brick
+                })
+            }),
+            axios.get('/api/getInvadeOrder').then((res) => {
+                // console.log(res.data)
+                // this.setState({
+                //     invadeLeaders: res.data
+                // })
+                // this.setState ({
+                //     invade: 0
+                // })
+                var invadeLeaders = res.data;
+                var invade = 0;
+                for(var i=0;i<=invadeLeaders.length;i++){
+                    if(invadeLeaders[i].auth_id===this.state.user){
+                        ++invade;
+                         break;
+                    }else{
+                        ++invade;
+                    }
                 }
-            }
-            return this.setState({
-                invade
-            })
-        }),
-        axios.get('/api/getOrbOrder').then((res) => {
-            // console.log("orb", res.data)
-            this.setState({
-                orbLeaders: res.data
-            })
-            this.setState ({
-                orb: 0
-            })
-            var orb = 0;
-            for(var i=0;i<=this.state.orbLeaders.length;i++){
-                if(this.state.orbLeaders[i].auth_id===this.state.user){
-                    // console.log(this.state.orbLeaders[i].auth_id, "break");
-                    ++orb;
-                     break;
-                }else{
-                    // console.log(this.state.orbLeaders[i].auth_id);
-                    ++orb;
+                return this.setState({
+                    invade
+                })
+            }),
+            axios.get('/api/getOrbOrder').then((res) => {
+                // console.log("orb", res.data)
+                // this.setState({
+                //     orbLeaders: res.data
+                // })
+                // this.setState ({
+                //     orb: 0
+                // })
+                var orbLeaders = res.data
+                var orb = 0;
+                for(var i=0;i<=orbLeaders.length;i++){
+                    if(orbLeaders[i].auth_id===this.state.user){
+                        // console.log(this.state.orbLeaders[i].auth_id, "break");
+                        ++orb;
+                         break;
+                    }else{
+                        // console.log(this.state.orbLeaders[i].auth_id);
+                        ++orb;
+                    }
                 }
-            }
-            return this.setState({
-                orb
+                return this.setState({
+                    orb
+                })
             })
         })
-
-
+        
     }
-
-
-
-
-
     render() {
         return (
             <div className="main-profile-container">
@@ -157,31 +155,29 @@ class Profile extends Component {
                     <div className="user-stats-actual">
                         <div className="stat-tile">
                             <div className="stat-tile-header">Pong</div>
-                            <div className="wins-losses"><div>Wins: {this.state.pongWins}</div><div>Losses:</div></div>
+                            <div className="wins-losses"><div>Wins: {this.state.pongWins}</div></div>
                         </div>
                         <div className="stat-tile">
                             <div className="stat-tile-header">Brick Breaker</div>
-                            <div className="wins-losses"><div>HighScore: {this.state.breakHigh}</div><div>Losses:</div></div>
+                            <div className="wins-losses"><div>HighScore: {this.state.breakHigh}</div></div>
                         </div>
-                        <div className="stat-tile">
+                        {/* <div className="stat-tile">
                             <div className="stat-tile-header">Tanks</div>
                             <div className="wins-losses"><div>Wins:</div><div>Losses:</div></div>
-                        </div>
+                        </div> */}
                         <div className="stat-tile">
                             <div className="stat-tile-header">Invaders</div>
-                            <div className="wins-losses"><div>HighScore: {this.state.invadeHigh}</div><div>Losses:</div></div>
+                            <div className="wins-losses"><div>HighScore: {this.state.invadeHigh}</div></div>
                         </div>
-                        <div className="stat-tile">
+                        {/* <div className="stat-tile">
                             <div className="stat-tile-header">Match Three</div>
                             <div className="wins-losses"><div>Wins:</div><div>Losses:</div></div>
-                        </div>
+                        </div> */}
                         <div className="stat-tile">
                             <div className="stat-tile-header">Cyber Orb</div>
-                            <div className="wins-losses"><div>Best Time: {this.state.orbHigh}</div><div>Losses:</div></div>
+                            <div className="wins-losses"><div>Best Time: {this.state.orbHigh}</div></div>
                         </div>
-
                     </div>
-
                 </div>
                 <div className="standings">
                     <div className="standings-header">Standings</div>
@@ -194,28 +190,26 @@ class Profile extends Component {
                             <div className="standings-tile-header">Brick Breaker</div>
                             <div>{this.state.brick}</div>
                         </div>
-                        <div className="standings-tile">
+                        {/* <div className="standings-tile">
                             <div className="standings-tile-header">Tanks</div>
                             <div>...</div>
-                        </div>
+                        </div> */}
                         <div className="standings-tile">
                             <div className="standings-tile-header">Invaders</div>
                             <div>{this.state.invade}</div>
                         </div>
-                        <div className="standings-tile">
+                        {/* <div className="standings-tile">
                             <div className="standings-tile-header">Match Three</div>
                             <div>...</div>
-                        </div>
+                        </div> */}
                         <div className="standings-tile">
                             <div className="standings-tile-header">Cyber Orb</div>
                             <div>{this.state.orb}</div>
                         </div>
-
                     </div>
                 </div>
             </div>
         )
     }
 }
-
 export default Profile;
