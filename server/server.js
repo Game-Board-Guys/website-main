@@ -15,7 +15,7 @@ const io = socketIO(app.listen(port,  console.log(`this server is running on por
 
 massive(process.env.CONNECTION_STRING).then(db => app.set('db', db));
 
-app.use("/js", express.static(__dirname + "/../build"));
+app.use(express.static(__dirname + "/../build"));
 app.use(bodyParser.json());
 app.use(cors());
 
