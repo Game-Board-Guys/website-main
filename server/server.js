@@ -9,7 +9,7 @@ const express = require('express')
     , socketIO = require('socket.io')
     , controller = require('./controller.js');
 
-const port = REACT_APP_process.env.SERVER_PORT;
+const port = process.env.SERVER_PORT;
 const app = express()
 const io = socketIO(app.listen(port,  console.log(`this server is running on port ${port}.`)))
 
