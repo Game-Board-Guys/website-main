@@ -15,7 +15,7 @@ const io = socketIO(app.listen(port,  console.log(`this server is running on por
 
 massive(process.env.CONNECTION_STRING).then(db => app.set('db', db));
 
-app.use("/js", express.static(__dirname + "/client/js"));
+app.use("/js", express.static(__dirname + "/build"));
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -207,3 +207,8 @@ app.get('/api/getBreakOrder', controller.getBreakOrder);
 app.get('/api/getInvadeOrder', controller.getInvadeOrder);
 // --- orb
 app.get('/api/getOrbOrder', controller.getOrbOrder);
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
